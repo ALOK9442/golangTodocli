@@ -8,5 +8,5 @@ func main() {
 	todos.add("book eating")
 	todos.add("book reading")
 	todos.isToggle(1)
-	
+	todos.Print()
 }
