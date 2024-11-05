@@ -12,9 +12,9 @@ import (
 
 type Todo struct {
 	Title       string
-	isCompleted bool
-	createdAt   time.Time
-	completedAt *time.Time
+	IsCompleted bool
+	CreatedAt   time.Time
+	CompletedAt *time.Time
 }
 
 type Todos []Todo
@@ -22,9 +22,9 @@ type Todos []Todo
 func (todos *Todos) add(title string) {
 	todo := Todo{
 		Title:       title,
-		createdAt:   time.Now(),
-		isCompleted: false,
-		completedAt: nil,
+		CreatedAt:   time.Now(),
+		IsCompleted: false,
+		CompletedAt: nil,
 	}
 
 	*todos = append(*todos, todo)
@@ -69,14 +69,14 @@ func (todos *Todos) isToggle(index int) error {
 		return err
 	}
 	// fmt.Println(t[index])
-	t[index].isCompleted = !t[index].isCompleted
-	if t[index].isCompleted {
+	t[index].IsCompleted = !t[index].IsCompleted
+	if t[index].IsCompleted {
 		completionTime := time.Now()
-		t[index].completedAt = &completionTime
+		t[index].CompletedAt = &completionTime
 	} else {
-		t[index].completedAt = nil
+		t[index].CompletedAt = nil
 	}
-	fmt.Println(t[index].completedAt.Format(time.RFC1123))
+	fmt.Println(t[index].CompletedAt.Format(time.RFC1123))
 	return nil
 }
 
@@ -87,14 +87,14 @@ func (todos *Todos) Print() {
 	for i, v := range *todos {
 		completed := "❌"
 		completedAt := ""
-		if v.isCompleted {
+		if v.IsCompleted {
 			completed = "✅"
-			if v.completedAt != nil {
-				completedAt = v.completedAt.Format(time.RFC1123)
+			if v.CompletedAt != nil {
+				completedAt = v.CompletedAt.Format(time.RFC1123)
 			}
 		}
 
-		table.AddRow(strconv.Itoa(i), v.Title, completed, v.createdAt.Format(time.RFC1123), completedAt)
+		table.AddRow(strconv.Itoa(i), v.Title, completed, v.CreatedAt.Format(time.RFC1123), completedAt)
 
 	}
 	table.Render()

@@ -5,8 +5,8 @@ import "fmt"
 func main() {
 	fmt.Println("Hello, World!")
 	todos := Todos{}
-	todos.add("book eating")
-	todos.add("book reading")
-	todos.isToggle(1)
+	storage := NewStorage[Todos]("jsondata.json")
+	storage.Load(&todos)
+	storage.Save(todos)
 	todos.Print()
 }
