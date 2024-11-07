@@ -66,17 +66,24 @@ func (todos *Todos) isToggle(index int) error {
 	// t := todos
 	t := *todos
 	if err := t.validateIndex(index); err != nil {
+		fmt.Println("here")
 		return err
 	}
 	// fmt.Println(t[index])
+	fmt.Println("here2", t[index].IsCompleted)
 	t[index].IsCompleted = !t[index].IsCompleted
+	fmt.Println("here3", t[index].IsCompleted)
 	if t[index].IsCompleted {
+		fmt.Println("here4", t[index].IsCompleted)
 		completionTime := time.Now()
 		t[index].CompletedAt = &completionTime
+		fmt.Println("here5", t[index].IsCompleted)
 	} else {
+		fmt.Println("here6", t[index].IsCompleted)
 		t[index].CompletedAt = nil
+		fmt.Println("here7", t[index].IsCompleted)
 	}
-	fmt.Println(t[index].CompletedAt.Format(time.RFC1123))
+	// fmt.Println(t[index].CompletedAt.Format(time.RFC1123))
 	return nil
 }
 

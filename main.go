@@ -7,6 +7,8 @@ func main() {
 	todos := Todos{}
 	storage := NewStorage[Todos]("jsondata.json")
 	storage.Load(&todos)
+	cmdFlags := NewCmdFlags()
+	cmdFlags.Execute(&todos)
 	storage.Save(todos)
-	todos.Print()
+	// todos.Print()
 }
